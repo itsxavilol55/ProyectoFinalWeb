@@ -143,6 +143,63 @@ app.put('/api/vendedores/:idvendedor',(req,res)=>{
         res.send(fila)
     });
 });
+//metodos tabla articulos
+app.get('/api/articulos/',(req,res)=>{
+    conexion.query('select * from articulos',(error,fila)=>{
+        if(error)
+        throw error;
+    else
+        res.send(fila)
+    });
+});
+app.get('/api/articulos/:id',(req,res)=>{
+    conexion.query('select * from articulos where clavearticulo=?',[req.params.id],
+    (error,fila)=>{
+        if(error)
+        throw error;
+    else
+        res.send(fila)
+    });
+});
+app.delete('/api/articulos/:id',(req,res)=>{
+    conexion.query('delete from articulos where clavearticulo=?',[req.params.id],
+    (error,fila)=>{
+        if(error)
+        throw error;
+    else
+        res.send(fila)
+    });
+});
+app.post('/api/articulos',(req,res)=>{
+    let data = {
+        clavearticulo: req.body.clavearticulo,
+        descripcion: req.body.descripcion,
+        existencia: req.body.existencia,
+        precio: req.body.precio
+    }
+    let sql = "insert into articulos set ?";
+    conexion.query(sql,data,
+    (error,resultado)=>{
+        if(error)
+        throw error;
+    else
+        res.send(resultado)
+    });
+});
+app.put('/api/articulos/:clavearticulo',(req,res)=>{
+    let clavearticulo = req.params.clavearticulo;
+    let descripcion = req.body.descripcion;
+    let existencia = req.body.existencia;
+    let precio = req.body.precio;
+    let sql = "update articulos set descripcion=?, existencia=?, precio=? where clavearticulo=?";
+    conexion.query(sql, [descripcion, existencia, precio, clavearticulo],
+    (error,fila)=>{
+        if(error)
+        throw error;
+    else
+        res.send(fila)
+    });
+});
 app.get("/",function(req,res){
     res.send('rutas de inicio');
 });

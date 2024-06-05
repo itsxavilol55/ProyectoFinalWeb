@@ -18,6 +18,9 @@ import { validate } from 'vee-validate';
           <RouterLink class="navbar-brand" to="/vendedores">
             Vendedores
           </RouterLink>
+          <RouterLink class="navbar-brand" to="/Articulos">
+            Articulos
+          </RouterLink>
           <RouterLink class="navbar-brand" to="/Ventas">
             Ventas
           </RouterLink>

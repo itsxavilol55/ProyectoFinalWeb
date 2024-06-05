@@ -2,10 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ClientesView from '../views/ClientesView.vue'
 import VendedoresView from '../views/VendedoresView.vue'
+import ArticulosView from '../views/ArticulosView.vue'
 import ClientesCreateView from '../views/ClientesCreateView.vue'
 import VendedoresCreateView from '../views/VendedoresCreateView.vue'
+import ArticulosCreateView from '../views/ArticulosCreateView.vue'
 import ClientesEditarView from '../views/ClientesEditarView.vue'
 import VendedoresEditarView from '../views/VendedoresEditarView.vue'
+import ArticulosEditarView from '../views/ArticulosEditarView.vue'
 import RegistroView from '../views/RegistroView.vue'
 import EntradaView from '../views/EntradaView.vue'
 import {getAuth} from 'firebase/auth'
@@ -36,6 +39,14 @@ const router = createRouter({
       }
     },
     {
+      path: '/Articulos',
+      name: 'Articulos',
+      component: ArticulosView,
+      meta:{
+        requireAuth: true,
+      }
+    },
+    {
       path: '/clientes/create',
       name: 'clientescreate',
       component: ClientesCreateView
@@ -46,6 +57,11 @@ const router = createRouter({
       component: VendedoresCreateView
     },
     {
+      path: '/Articulos/create',
+      name: 'Articulosscreate',
+      component: ArticulosCreateView
+    },
+    {
       path: '/clientes/:id/edit',
       name: 'clienteseditar',
       component: ClientesEditarView
@@ -54,6 +70,11 @@ const router = createRouter({
       path: '/vendedores/:id/edit',
       name: 'vendedoreseditar',
       component: VendedoresEditarView
+    },
+    {
+      path: '/Articulos/:id/edit',
+      name: 'Articuloseditar',
+      component: ArticulosEditarView
     },
     {
       path: '/clientes/registro',
