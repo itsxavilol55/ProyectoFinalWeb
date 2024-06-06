@@ -11,6 +11,7 @@ import VendedoresEditarView from '../views/VendedoresEditarView.vue'
 import ArticulosEditarView from '../views/ArticulosEditarView.vue'
 import RegistroView from '../views/RegistroView.vue'
 import EntradaView from '../views/EntradaView.vue'
+import VentasView from '../views/VentasView.vue'
 import {getAuth} from 'firebase/auth'
 import NoAutorizoView from '../views/NoAutorizaView.vue'
 import { record } from 'zod'
@@ -98,6 +99,11 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
+    },
+    {
+      path: '/ventas',
+      name: 'ventas',
+      component: VentasView
     }
   ]
 })

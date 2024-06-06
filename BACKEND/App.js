@@ -206,3 +206,29 @@ app.get("/",function(req,res){
 app.listen(3000, function(){
     console.log('Servidor listo');
 });
+
+app.get('/api/ventas/',(req,res)=>{
+    conexion.query('select * from ventas',(error,fila)=>{
+        if(error)
+        throw error;
+    else
+        res.send(fila)
+    });
+});
+app.post('/api/ventas',(req,res)=>{
+    let data = {
+        clavearticulo: req.body.clavearticulo,
+        cantidad: req.body.cantidad,
+        precio: req.body.precio,
+        fecha: req.body.fecha,
+        idvendedor: req.body.idvendedor
+    }
+    let sql = "insert into ventas set ?";
+    conexion.query(sql,data,
+    (error,resultado)=>{
+        if(error)
+        throw error;
+    else
+        res.send(resultado)
+    });
+});
